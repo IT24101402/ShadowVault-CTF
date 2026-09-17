@@ -216,3 +216,34 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ==============================
+# ShadowVault CTF Project
+# ==============================
+
+# Environment variables and secrets
+.env
+*.env
+!.env.example
+
+# Credentials and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local logs
+*.log
+logs/
+
+# Docker/runtime data
+docker-data/
+volumes/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
