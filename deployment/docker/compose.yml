@@ -1,0 +1,74 @@
+services:
+
+  db:
+    image: mariadb:11.4
+    container_name: shadowvault-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - shadowvault_db_data:/var/lib/mysql
+    networks:
+      - shadowvault_backend
+
+  redis:
+    image: redis:7-alpine
+    container_name: shadowvault-redis
+    restart: unless-stopped
+    command: redis-server --save 60 1
+    volumes:
+      - shadowvault_redis_data:/data
+    networks:
+      - shadowvault_backend
+
+  ctfd:
+    image: ctfd/ctfd:latest
+    container_name: shadowvault-ctfd
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      SECRET_KEY: ${CTFD_SECRET_KEY}
+      DATABASE_URL: mysql+pymysql://${DB_USER}:${DB_PASSWORD}@db/${DB_NAME}
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "8000:8000"
+    volumes:
+      - shadowvault_ctfd_uploads:/var/uploads
+      - shadowvault_ctfd_logs:/var/log/CTFd
+    networks:
+      - shadowvault_frontend
+      - shadowvault_backend
+
+networks:
+  shadowvault_frontend:
+
+    name: shadowvault_frontend
+    driver: bridge
+
+  shadowvault_backend:
+    name: shadowvault_backend
+    driver: bridge
+    internal: true
+
+  stage03_network:
+    name: shadowvault_stage03
+    driver: bridge
+
+  stage05_network:
+    name: shadowvault_stage05
+    driver: bridge
+
+  stage06_network:
+    name: shadowvault_stage06
+    driver: bridge
+
+volumes:
+  shadowvault_db_data:
+  shadowvault_redis_data:
+  shadowvault_ctfd_uploads:
+  shadowvault_ctfd_logs:
