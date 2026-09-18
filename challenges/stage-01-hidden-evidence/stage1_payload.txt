@@ -1,0 +1,2 @@
+SHADOW{hidden_evidence_found}
+NEXT: Recover the coded message in Stage 2.
