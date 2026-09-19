@@ -4,6 +4,8 @@ services:
     image: mariadb:11.4
     container_name: shadowvault-db
     restart: unless-stopped
+    mem_limit: 768m
+    cpus: 0.75
     environment:
       MARIADB_DATABASE: ${DB_NAME}
       MARIADB_USER: ${DB_USER}
@@ -18,6 +20,8 @@ services:
     image: redis:7-alpine
     container_name: shadowvault-redis
     restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.25
     command: redis-server --save 60 1
     volumes:
       - shadowvault_redis_data:/data
@@ -28,6 +32,8 @@ services:
     image: ctfd/ctfd:latest
     container_name: shadowvault-ctfd
     restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.75
     depends_on:
       - db
       - redis
@@ -45,8 +51,8 @@ services:
       - shadowvault_backend
 
 networks:
-  shadowvault_frontend:
 
+  shadowvault_frontend:
     name: shadowvault_frontend
     driver: bridge
 
@@ -68,6 +74,7 @@ networks:
     driver: bridge
 
 volumes:
+
   shadowvault_db_data:
   shadowvault_redis_data:
   shadowvault_ctfd_uploads:
