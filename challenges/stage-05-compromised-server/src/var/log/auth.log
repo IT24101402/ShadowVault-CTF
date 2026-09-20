@@ -1,0 +1,4 @@
+Jan 14 09:12:03 novatech sshd[1842]: Failed password for invalid user admin from 10.13.37.22 port 44218 ssh2
+Jan 14 09:12:07 novatech sshd[1842]: Failed password for invalid user admin from 10.13.37.22 port 44218 ssh2
+Jan 14 09:13:21 novatech sshd[1851]: Accepted password for analyst from 10.13.37.22 port 44231 ssh2
+Jan 14 09:14:02 novatech sudo: analyst : TTY=pts/0 ; PWD=/home/analyst ; USER=root ; COMMAND=/usr/bin/cat /opt/novatech/recovery-note.txt

@@ -3,4 +3,7 @@ NovaTech recovery note
 The compromised server was accessed through SSH.
 Review /var/log/auth.log and the analyst shell history to trace the incident.
 
+Flag: SHADOW{compromised_server_traced}
 Recovery token: NV-SV-6204
+
+NEXT: Use the recovered vault token in the final ShadowVault stage.
