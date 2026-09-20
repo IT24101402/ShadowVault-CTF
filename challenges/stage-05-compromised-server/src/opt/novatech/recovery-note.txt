@@ -1,0 +1,6 @@
+NovaTech recovery note
+
+The compromised server was accessed through SSH.
+Review /var/log/auth.log and the analyst shell history to trace the incident.
+
+Recovery token: NV-SV-6204
