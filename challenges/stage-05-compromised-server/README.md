@@ -8,7 +8,7 @@ Linux Forensics
 
 ## Difficulty
 
-Medium
+Moderate-Hard
 
 ## Scenario
 
