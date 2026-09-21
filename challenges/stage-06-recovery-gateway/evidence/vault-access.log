@@ -1,0 +1,20 @@
+[ShadowVault Recovery Service]
+System: SV-GATEWAY-06
+Status: RECOVERY MODE
+
+2026-01-14T09:15:02Z INFO  recovery service initialized
+2026-01-14T09:15:08Z WARN  primary authorization channel unavailable
+2026-01-14T09:15:11Z INFO  fallback verification sequence enabled
+
+Verification fragments:
+FRAGMENT-A = 73
+FRAGMENT-B = 86
+FRAGMENT-C = 54
+
+Recovery procedure:
+1. Supply the recovery token obtained from the compromised server.
+2. Convert each decimal verification fragment to its ASCII character.
+3. Join the characters in A-B-C order.
+4. Supply the resulting verification code to the recovery gateway.
+
+Unauthorized recovery attempts are logged.

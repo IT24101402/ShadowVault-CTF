@@ -247,3 +247,7 @@ Thumbs.db
 # IDE/editor files
 .vscode/
 .idea/
+
+# Keep intentional Stage 6 challenge evidence
+!challenges/stage-06-recovery-gateway/evidence/
+!challenges/stage-06-recovery-gateway/evidence/vault-access.log
