@@ -18,17 +18,25 @@ curl http://127.0.0.1:5006/
 
 The ShadowVault Access Gateway is displayed.
 
-## Invalid Token Test
+## Authorization Validation
 
-curl -i -X POST -d 'token=wrong' http://127.0.0.1:5006/unlock
+### Wrong Token + Correct Verification Code
 
-Expected result: HTTP 403 Access Denied.
+curl -i -X POST -d 'token=wrong&code=IV6' http://127.0.0.1:5006/unlock
 
-## Valid Token Test
+Expected and observed result: HTTP 403 Access Denied.
 
-curl -i -X POST -d 'token=NV-SV-6204' http://127.0.0.1:5006/unlock
+### Correct Token + Wrong Verification Code
 
-Expected result: the final flag is displayed.
+curl -i -X POST -d 'token=NV-SV-6204&code=WRONG' http://127.0.0.1:5006/unlock
+
+Expected and observed result: HTTP 403 Access Denied.
+
+### Correct Token + Correct Verification Code
+
+curl -i -X POST -d 'token=NV-SV-6204&code=IV6' http://127.0.0.1:5006/unlock
+
+Expected and observed result: HTTP 200 and the final flag is displayed.
 
 ## Expected Final Flag
 
